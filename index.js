@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const job = required("./cron.js");
 
 const app = express();
 
@@ -13,7 +14,7 @@ const connection = mysql.createConnection({
     password: "8gNtNvhsT9L5X].q",
     database: "archievement",
 });
-
+job.start();
 connection.connect((err) => {
     if (err) {
         console.error("Erreur de connexion à la base de données :", err);
