@@ -1,23 +1,18 @@
 const cron = require("cron");
 const https = require("https");
 
-const backEndUrl = "https://wakarkserverback.onrender.com/leaderboards";
+const backEndUrl = "https://wakarkserverback.onrender.com";
 
-const job = new cron.CronJob(
-    ("*/1 * * * *",
-    function () {
-        console.log("restarting server");
+const job = new cron.CronJob("*/5 * * * * *", function () {
+    console.log("Redémarrage du serveur");
 
-        https.get(backEndUrl, (res) => {
-            if (res.statusCode === 200) {
-                console.log("Server Restarted");
-            } else {
-                console.error("failed to restart");
-            }
-        });
-    })
-);
+    https.get(backEndUrl, (res) => {
+        if (res.statusCode === 200) {
+            console.log("Serveur redémarré avec succès");
+        } else {
+            console.error("Échec du redémarrage du serveur");
+        }
+    });
+});
 
-module.exports = {
-    job,
-};
+module.exports = job;

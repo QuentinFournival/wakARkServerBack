@@ -14,13 +14,13 @@ const connection = mysql.createConnection({
     password: "8gNtNvhsT9L5X].q",
     database: "archievement",
 });
-job.start();
 connection.connect((err) => {
     if (err) {
         console.error("Erreur de connexion à la base de données :", err);
         return;
     }
     console.log("Connexion à la base de données MySQL établie");
+    job.start();
 });
 
 app.get("/leaderboards", (req, res) => {
