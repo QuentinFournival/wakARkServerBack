@@ -4,7 +4,7 @@ const https = require("https");
 const backEndUrl = "https://wakarkserverback.onrender.com/leaderboards";
 
 const job = new cron.CronJob(
-    ("*/14 * * * *",
+    ("*/1 * * * *",
     function () {
         console.log("restarting server");
 

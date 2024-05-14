@@ -1,7 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const job = required("./cron.js");
+const job = require("./cron.js");
 
 const app = express();
 
