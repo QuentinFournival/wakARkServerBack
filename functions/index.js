@@ -1,8 +1,7 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const job = require("./cron.js");
-
+const serverless = require("serverless-http");
 const app = express();
 
 app.use(cors());
@@ -20,7 +19,6 @@ connection.connect((err) => {
         return;
     }
     console.log("Connexion à la base de données MySQL établie");
-    job.start();
 });
 
 app.get("/leaderboards", (req, res) => {
@@ -60,7 +58,5 @@ app.get("/playerStats", (req, res) => {
     );
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Serveur démarré sur le port ${PORT}`);
-});
+app.use("/.netlify/functions/index.js", router);
+module.export.handler = serverless(app);
